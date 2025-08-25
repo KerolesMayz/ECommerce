@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce_app/core/routes_manager/routes.dart';
 import 'package:ecommerce_app/core/widget/dialog_utils.dart';
 import 'package:ecommerce_app/domain/entity/result_entity.dart';
-import 'package:ecommerce_app/domain/entity/signup_response_entity.dart';
+import 'package:ecommerce_app/domain/entity/auth_response.dart';
 import 'package:ecommerce_app/domain/use_case/signup_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -31,23 +31,39 @@ class SignUpViewModel extends Cubit<SignUpState> {
           rePasswordController.text,
           phoneController.text);
       switch (result) {
-        case Success<SignupResponseEntity>():
+        case Success<AuthResponseEntity>():
           emit(SignUpSuccessState(signupResponse: result.data));
-        case ServerError<SignupResponseEntity>():
+        case ServerError<AuthResponseEntity>():
           emit(SignUpErrorState(errorMessage: result.message));
-        case ConnectivityError<SignupResponseEntity>():
+        case ConnectivityError<AuthResponseEntity>():
           emit(SignUpErrorState(errorMessage: result.message));
-        case GeneralException<SignupResponseEntity>():
+        case GeneralException<AuthResponseEntity>():
           emit(SignUpErrorState(errorMessage: result.exception.toString()));
       }
     }
   }
-  void onSuccessGoToLoginPress(BuildContext context){
+  void onLoadingState(BuildContext context){
+    DialogUtils.showLoadingDialog(context);
+  }
+  void onErrorState(BuildContext context, String errorMessage){
+    DialogUtils.showErrorDialog(context, errorMessage);
+  }
+  void onSuccessState(BuildContext context){
+    DialogUtils.showMessageDialog(
+        context, 'Account Created Successfully!',
+        posActionName: 'go to Login',
+        posAction: () =>
+            _onSuccessStateGoToLoginPress(context),
+        negActionName: 'Login Now',
+        negAction: () =>
+            _onSuccessStateLoginNowPress(context));
+  }
+  void _onSuccessStateGoToLoginPress(BuildContext context){
     DialogUtils.hideDialog(context);
     Navigator.pushNamedAndRemoveUntil(
         context, Routes.signInRoute, (route) => false);
   }
-  void onSuccessLoginNowPress(BuildContext context){
+  void _onSuccessStateLoginNowPress(BuildContext context){
     DialogUtils.hideDialog(context);
     Navigator.pushNamedAndRemoveUntil(
         context, Routes.mainRoute, (route) => false);

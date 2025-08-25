@@ -5,7 +5,7 @@ class AppValidators {
 
   static String? validateEmail(String? val) {
     RegExp emailRegex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$");
     if (val == null) {
       return 'this field is required';
     } else if (val.trim().isEmpty) {
@@ -16,6 +16,7 @@ class AppValidators {
       return null;
     }
   }
+
 
   static String? validatePassword(String? val) {
     RegExp passwordRegex = RegExp(r'^(?=.*[a-zA-Z])(?=.*[0-9])');
@@ -68,7 +69,9 @@ class AppValidators {
       return 'enter numbers only';
     } else if (val.trim().length != 11) {
       return 'enter value must equal 11 digit';
-    } else {
+    } else if (!val.trim().startsWith('01')){
+      return 'accept only egypt phone numbers';
+    }else {
       return null;
     }
   }

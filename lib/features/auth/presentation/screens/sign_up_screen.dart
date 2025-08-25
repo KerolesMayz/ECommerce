@@ -33,20 +33,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           case SignUpInitialState():
             break;
           case SignUpLoadingState():
-            DialogUtils.showLoadingDialog(context);
+            signUpViewModel.onLoadingState(context);
           case SignUpErrorState():
             DialogUtils.hideDialog(context);
-            DialogUtils.showErrorDialog(context, state.errorMessage);
+            signUpViewModel.onErrorState(context, state.errorMessage);
           case SignUpSuccessState():
             DialogUtils.hideDialog(context);
-            DialogUtils.showMessageDialog(
-                context, 'Account Created Successfully!',
-                posActionName: 'go to Login',
-                posAction: () =>
-                    signUpViewModel.onSuccessGoToLoginPress(context),
-                negActionName: 'Login Now',
-                negAction: () =>
-                    signUpViewModel.onSuccessLoginNowPress(context));
+            signUpViewModel.onSuccessState(context);
         }
       },
       child: Scaffold(
@@ -82,6 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: signUpViewModel.phoneController,
                       hint: 'enter your mobile no.',
                       backgroundColor: ColorManager.white,
+                      maxLength: 11,
                       label: 'Mobile Number',
                       validation: AppValidators.validatePhoneNumber,
                       textInputType: TextInputType.phone,

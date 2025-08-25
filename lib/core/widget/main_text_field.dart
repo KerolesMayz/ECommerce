@@ -9,26 +9,28 @@ import '../resources/styles_manager.dart';
 import '../resources/values_manager.dart';
 
 class BuildTextField extends StatefulWidget {
-  const BuildTextField({
-    super.key,
-    this.controller,
-    this.focusNode,
-    this.nextFocus,
-    this.label,
-    this.hint,
-    this.isObscured = false,
-    this.iconData,
-    this.textInputType = TextInputType.text,
-    this.backgroundColor,
-    this.hintTextStyle,
-    this.labelTextStyle,
-    this.cursorColor,
-    this.readOnly = false,
-    this.validation,
-    this.onTap,
-    this.maxLines,
-    this.prefixIcon, this.borderBackgroundColor, this.suffixIcon,
-  });
+  const BuildTextField(
+      {super.key,
+      this.controller,
+      this.focusNode,
+      this.nextFocus,
+      this.label,
+      this.hint,
+      this.isObscured = false,
+      this.iconData,
+      this.textInputType = TextInputType.text,
+      this.backgroundColor,
+      this.hintTextStyle,
+      this.labelTextStyle,
+      this.cursorColor,
+      this.readOnly = false,
+      this.validation,
+      this.onTap,
+      this.maxLines,
+      this.prefixIcon,
+      this.borderBackgroundColor,
+      this.suffixIcon,
+      this.maxLength});
 
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -45,6 +47,7 @@ class BuildTextField extends StatefulWidget {
   final Color? cursorColor;
   final bool readOnly;
   final int? maxLines;
+  final int? maxLength;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? Function(String?)? validation;
@@ -65,8 +68,7 @@ class _BuildTextFieldState extends State<BuildTextField> {
       children: [
         widget.label != null
             ? Padding(
-                padding: const EdgeInsets.only(
-                     top: AppPadding.p2),
+                padding: const EdgeInsets.only(top: AppPadding.p2),
                 child: Text(
                   widget.label!,
                   style: widget.labelTextStyle ??
@@ -78,17 +80,24 @@ class _BuildTextFieldState extends State<BuildTextField> {
         Container(
           margin: const EdgeInsets.only(top: AppMargin.m5),
           decoration: BoxDecoration(
-            color: widget.backgroundColor ??
-                ColorManager.darkGrey..withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(AppSize.s8),
-            border: Border.all(color: widget.borderBackgroundColor ?? ColorManager.transparent )
-          ),
+              color: widget.backgroundColor ?? ColorManager.darkGrey
+                ..withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(AppSize.s8),
+              border: Border.all(
+                  color: widget.borderBackgroundColor ??
+                      ColorManager.transparent)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: TextFormField(
             maxLines: widget.maxLines ?? 1,
             controller: widget.controller,
+            maxLength: widget.maxLength,
             focusNode: widget.focusNode,
             readOnly: widget.readOnly,
+            buildCounter: (context,
+                    {required currentLength,
+                    required isFocused,
+                    required maxLength}) =>
+                null,
             style: getMediumStyle(color: ColorManager.black)
                 .copyWith(fontSize: FontSize.s18.sp),
             obscureText: hidden,
