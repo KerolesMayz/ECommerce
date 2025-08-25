@@ -23,7 +23,7 @@ class FavoriteItem extends StatelessWidget {
         padding: EdgeInsets.only(right: AppSize.s8.w),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSize.s16.r),
-            border: Border.all(color: ColorManager.primary.withOpacity(.3))),
+            border: Border.all(color: ColorManager.primary..withValues(alpha: 0.3))),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -31,7 +31,7 @@ class FavoriteItem extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppSize.s16.r),
                   border:
-                      Border.all(color: ColorManager.primary.withOpacity(.6))),
+                      Border.all(color: ColorManager.primary..withValues(alpha: 0.6))),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(AppSize.s16.r),
                 child: CachedNetworkImage(

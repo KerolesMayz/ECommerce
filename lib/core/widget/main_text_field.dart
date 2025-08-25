@@ -79,7 +79,7 @@ class _BuildTextFieldState extends State<BuildTextField> {
           margin: const EdgeInsets.only(top: AppMargin.m5),
           decoration: BoxDecoration(
             color: widget.backgroundColor ??
-                ColorManager.darkGrey.withOpacity(.15),
+                ColorManager.darkGrey..withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(AppSize.s8),
             border: Border.all(color: widget.borderBackgroundColor ?? ColorManager.transparent )
           ),

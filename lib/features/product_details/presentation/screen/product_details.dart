@@ -101,7 +101,7 @@ class ProductDetails extends StatelessWidget {
                     Text(
                       'Total price',
                       style: getMediumStyle(
-                              color: ColorManager.primary.withOpacity(.6))
+                              color: ColorManager.primary..withValues(alpha: 0.6))
                           .copyWith(fontSize: 18.sp),
                     ),
                     SizedBox(

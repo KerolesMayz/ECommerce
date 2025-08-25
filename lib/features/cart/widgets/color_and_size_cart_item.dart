@@ -26,7 +26,7 @@ class ColorAndSizeCartItem extends StatelessWidget {
         Text(
           colorName,
           style: getRegularStyle(
-            color: ColorManager.textColor.withOpacity(0.5),
+            color: ColorManager.textColor..withValues(alpha: 0.5),
             fontSize: AppSize.s14.sp,
           ),
         ),
@@ -43,7 +43,7 @@ class ColorAndSizeCartItem extends StatelessWidget {
         Text(
           'Size: $size',
           style: getRegularStyle(
-              color: ColorManager.textColor.withOpacity(0.5),
+              color: ColorManager.textColor..withValues(alpha: 0.5),
               fontSize: AppSize.s14.sp),
         ),
       ],

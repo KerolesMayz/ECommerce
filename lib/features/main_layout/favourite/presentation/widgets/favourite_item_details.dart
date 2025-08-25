@@ -63,12 +63,12 @@ class FavouriteItemDetails extends StatelessWidget {
                             data: 'EGP ${product["salePrice"]}',
                             textStyle: getMediumStyle(
                                     color: ColorManager.appBarTitleColor
-                                        .withOpacity(.6))
+                                        ..withValues(alpha: 0.6))
                                 .copyWith(
                                     letterSpacing: 0.17,
                                     decoration: TextDecoration.lineThrough,
                                     color: ColorManager.appBarTitleColor
-                                        .withOpacity(.6),
+                                        ..withValues(alpha: 0.6),
                                     fontSize: AppSize.s10.sp)),
                       ],
                     ),
