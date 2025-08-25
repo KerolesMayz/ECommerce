@@ -24,13 +24,13 @@ class _CategoriesListState extends State<CategoriesList> {
             // set the border for only 3 sides
             top: BorderSide(
                 width: AppSize.s2,
-                color: ColorManager.primary.withOpacity(0.3)),
+                color: ColorManager.primary.withValues(alpha: 0.3)),
             left: BorderSide(
                 width: AppSize.s2,
-                color: ColorManager.primary.withOpacity(0.3)),
+                color: ColorManager.primary.withValues(alpha: 0.3)),
             bottom: BorderSide(
                 width: AppSize.s2,
-                color: ColorManager.primary.withOpacity(0.3))),
+                color: ColorManager.primary.withValues(alpha: 0.3))),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppSize.s12),
           bottomLeft: Radius.circular(AppSize.s12),
@@ -54,7 +54,7 @@ class _CategoriesListState extends State<CategoriesList> {
   }
 
   // callback function to change the selected index
-  onItemClick(int index) {
+  void onItemClick(int index) {
     setState(() {
       selectedIndex = index;
     });

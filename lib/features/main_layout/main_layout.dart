@@ -56,7 +56,7 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
-  changeSelectedIndex(int selectedIndex) {
+  void changeSelectedIndex(int selectedIndex) {
     setState(() {
       currentIndex = selectedIndex;
     });

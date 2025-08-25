@@ -7,23 +7,31 @@ environment:
   sdk: ^3.3.4
 
 dependencies:
-  cached_network_image:
-  carousel_slider_plus:
+  cached_network_image: ^3.4.1
+  path_provider: ^2.1.4
+  carousel_slider_plus: ^7.1.1
   flutter:
     sdk: flutter
   flutter_screenutil:
-  flutter_slidable:
+  flutter_slidable: ^4.0.1
   auto_size_text:
-  colornames:
-  flutter_svg:
-  flutter_native_splash:
+  colornames: ^0.2.0
+  flutter_svg: ^2.2.0
+  flutter_native_splash: ^2.4.6
+  flutter_bloc: ^9.1.1
+  dio: ^5.9.0
+  connectivity_plus: ^6.1.5
   readmore:
-  smooth_page_indicator:
+  smooth_page_indicator: ^1.2.1
+  injectable: ^2.5.1
+  get_it: ^8.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints:
+  injectable_generator: 2.6.2
+  build_runner: any
 
 flutter:
   generate: true

@@ -50,7 +50,7 @@ class SubCategoriesList extends StatelessWidget {
     );
   }
 
-  goToCategoryProductsListScreen() {
+  void goToCategoryProductsListScreen() {
     // todo implement this function
   }
 }
