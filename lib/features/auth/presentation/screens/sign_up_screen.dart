@@ -14,18 +14,16 @@ import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widget/main_text_field.dart';
 import '../../../../core/widget/validators.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  final SignUpViewModel signUpViewModel = getIt<SignUpViewModel>();
-
-  @override
   Widget build(BuildContext context) {
+
+    // initializing view model
+    final SignUpViewModel signUpViewModel = getIt<SignUpViewModel>();
+
+    // building the screen
     return BlocListener<SignUpViewModel, SignUpState>(
       bloc: signUpViewModel,
       listener: (context, state) {

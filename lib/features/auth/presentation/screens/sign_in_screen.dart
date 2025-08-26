@@ -16,18 +16,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/resources/font_manager.dart';
 import '../../../../core/resources/styles_manager.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
-  SignInViewModel signInViewModel = getIt<SignInViewModel>();
-
-  @override
   Widget build(BuildContext context) {
+
+    // initializing view model
+    SignInViewModel signInViewModel = getIt<SignInViewModel>();
+
+    // building the screen
     return BlocListener<SignInViewModel, SignInState>(
       bloc: signInViewModel,
       listener: (context, state) {
