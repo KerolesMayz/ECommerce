@@ -95,23 +95,24 @@ class _SignInScreenState extends State<SignInScreen> {
                       isObscured: true,
                       textInputType: TextInputType.text,
                     ),
+                    // todo : in case of creating forget password screen
+                    // SizedBox(
+                    //   height: AppSize.s8.h,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     const Spacer(),
+                    //     GestureDetector(
+                    //         onTap: () {},
+                    //         child: Text(
+                    //           'Forget password?',
+                    //           style: getMediumStyle(color: ColorManager.white)
+                    //               .copyWith(fontSize: FontSize.s18.sp),
+                    //         )),
+                    //   ],
+                    // ),
                     SizedBox(
-                      height: AppSize.s8.h,
-                    ),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              'Forget password?',
-                              style: getMediumStyle(color: ColorManager.white)
-                                  .copyWith(fontSize: FontSize.s18.sp),
-                            )),
-                      ],
-                    ),
-                    SizedBox(
-                      height: AppSize.s60.h,
+                      height: AppSize.s50.h,
                     ),
                     Center(
                       child: SizedBox(

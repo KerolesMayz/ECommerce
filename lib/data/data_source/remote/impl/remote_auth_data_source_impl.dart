@@ -2,6 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/api_manager/api_endpoints.dart';
 import 'package:ecommerce_app/core/api_manager/api_manager.dart';
+import 'package:ecommerce_app/core/resources/shared_prefs_keys.dart';
+import 'package:ecommerce_app/core/widget/shared_prefs.dart';
 import 'package:ecommerce_app/data/data_source/remote/remote_auth_data_source.dart';
 import 'package:ecommerce_app/data/model/auth_response_data_model.dart';
 import 'package:ecommerce_app/domain/entity/result_entity.dart';
@@ -62,9 +64,9 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
         var signInResponse =
         AuthResponseDataModel.fromJson(response.data);
         if(response.statusCode! >= 200 && response.statusCode! < 300){
+          SharedPrefs.saveData(key: SharedPrefsKeys.token,value: signInResponse.token);
           return Success(data: signInResponse);
         }else{
-          print(response.data);
           return ServerError(
               code: response.statusCode.toString(),
               message: signInResponse.message ?? '');

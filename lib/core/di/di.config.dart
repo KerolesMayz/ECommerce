@@ -38,10 +38,10 @@ extension GetItInjectableX on _i174.GetIt {
         _i320.RemoteAuthDataSourceImpl(apiManager: gh<_i266.ApiManager>()));
     gh.factory<_i8.AuthRepo>(() => _i505.AuthRepoImpl(
         remoteAuthDataSource: gh<_i53.RemoteAuthDataSource>()));
-    gh.factory<_i185.SignInUseCase>(
-        () => _i185.SignInUseCase(authRepo: gh<_i8.AuthRepo>()));
     gh.factory<_i363.SignupUseCase>(
         () => _i363.SignupUseCase(authRepo: gh<_i8.AuthRepo>()));
+    gh.factory<_i185.SignInUseCase>(
+        () => _i185.SignInUseCase(authRepo: gh<_i8.AuthRepo>()));
     gh.factory<_i327.SignUpViewModel>(
         () => _i327.SignUpViewModel(signupUseCase: gh<_i363.SignupUseCase>()));
     gh.factory<_i9.SignInViewModel>(

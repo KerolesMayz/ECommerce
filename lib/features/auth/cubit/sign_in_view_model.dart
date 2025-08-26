@@ -11,8 +11,8 @@ part 'sign_in_state.dart';
 @injectable
 class SignInViewModel extends Cubit<SignInState> {
   SignInUseCase signInUseCase;
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController(text: 'Ab12345@');
+  TextEditingController emailController = TextEditingController(text: 'kero@kero.com');
   var formKey = GlobalKey<FormState>();
 
   SignInViewModel({required this.signInUseCase}) : super(SignInInitial());
