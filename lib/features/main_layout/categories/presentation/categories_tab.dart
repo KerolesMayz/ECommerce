@@ -5,16 +5,20 @@ import 'package:flutter/material.dart';
 import 'widgets/sub_categories_list.dart';
 
 class CategoriesTab extends StatelessWidget {
-  const CategoriesTab({super.key});
+  const CategoriesTab({super.key, this.selectedCategory = 0});
+
+  final int selectedCategory;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: AppPadding.p12, vertical: AppPadding.p12),
       child: Row(
         children: [
-          CategoriesList(),
+          CategoriesList(
+            selectedIndex: selectedCategory,
+          ),
           SizedBox(
             width: AppSize.s16,
           ),

@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/data/model/user_data_model.dart';
-import 'package:ecommerce_app/domain/entity/auth_response.dart';
+import 'package:ecommerce_app/domain/entity/auth_entity.dart';
 
-class AuthResponseDataModel extends AuthResponseEntity {
+class AuthResponseDataModel extends AuthEntity {
   AuthResponseDataModel({
     super.message,
     super.user,

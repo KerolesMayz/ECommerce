@@ -8,6 +8,7 @@ import 'package:ecommerce_app/data/data_source/remote/remote_auth_data_source.da
 import 'package:ecommerce_app/data/model/auth_response_data_model.dart';
 import 'package:ecommerce_app/domain/entity/result_entity.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: RemoteAuthDataSource)
 class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
   ApiManager apiManager;
@@ -16,8 +17,7 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
 
   @override
   Future<Result<AuthResponseDataModel>> signUp(String name, String email,
-      String password, String rePassword, String phone) async
-  {
+      String password, String rePassword, String phone) async {
     try {
       final List<ConnectivityResult> connectivityResult =
           await Connectivity().checkConnectivity();
@@ -31,11 +31,10 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
           "rePassword": rePassword,
           "phone": phone
         });
-        var signupResponse =
-            AuthResponseDataModel.fromJson(response.data);
-        if(response.statusCode! >= 200 && response.statusCode! < 300){
+        var signupResponse = AuthResponseDataModel.fromJson(response.data);
+        if (response.statusCode! >= 200 && response.statusCode! < 300) {
           return Success(data: signupResponse);
-        }else{
+        } else {
           return ServerError(
               code: response.statusCode.toString(),
               message: signupResponse.message ?? '');
@@ -43,14 +42,14 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
       } else {
         return ConnectivityError();
       }
-    }
-    on DioException catch (e) {
+    } on DioException catch (e) {
       return GeneralException(exception: e);
     }
   }
 
   @override
-  Future<Result<AuthResponseDataModel>> signIn(String password, String email) async{
+  Future<Result<AuthResponseDataModel>> signIn(
+      String password, String email) async {
     try {
       final List<ConnectivityResult> connectivityResult =
           await Connectivity().checkConnectivity();
@@ -61,12 +60,12 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
           "email": email,
           "password": password,
         });
-        var signInResponse =
-        AuthResponseDataModel.fromJson(response.data);
-        if(response.statusCode! >= 200 && response.statusCode! < 300){
-          SharedPrefs.saveData(key: SharedPrefsKeys.token,value: signInResponse.token);
+        var signInResponse = AuthResponseDataModel.fromJson(response.data);
+        if (response.statusCode! >= 200 && response.statusCode! < 300) {
+          SharedPrefs.saveData(
+              key: SharedPrefsKeys.token, value: signInResponse.token);
           return Success(data: signInResponse);
-        }else{
+        } else {
           return ServerError(
               code: response.statusCode.toString(),
               message: signInResponse.message ?? '');
@@ -74,8 +73,7 @@ class RemoteAuthDataSourceImpl implements RemoteAuthDataSource {
       } else {
         return ConnectivityError();
       }
-    }
-    on DioException catch (e) {
+    } on DioException catch (e) {
       return GeneralException(exception: e);
     }
   }

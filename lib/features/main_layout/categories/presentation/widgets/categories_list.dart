@@ -4,7 +4,9 @@ import 'package:ecommerce_app/features/main_layout/categories/presentation/widge
 import 'package:flutter/material.dart';
 
 class CategoriesList extends StatefulWidget {
-  const CategoriesList({super.key});
+  const CategoriesList({super.key,required this.selectedIndex});
+
+  final int selectedIndex;
 
   @override
   State<CategoriesList> createState() => _CategoriesListState();
@@ -12,7 +14,13 @@ class CategoriesList extends StatefulWidget {
 
 class _CategoriesListState extends State<CategoriesList> {
   // Index of the currently selected category
-  int selectedIndex = 0;
+  late int selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.selectedIndex;
+  }
 
   @override
   Widget build(BuildContext context) {

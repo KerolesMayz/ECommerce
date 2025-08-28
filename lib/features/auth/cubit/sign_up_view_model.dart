@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce_app/core/routes_manager/routes.dart';
 import 'package:ecommerce_app/core/widget/dialog_utils.dart';
 import 'package:ecommerce_app/domain/entity/result_entity.dart';
-import 'package:ecommerce_app/domain/entity/auth_response.dart';
+import 'package:ecommerce_app/domain/entity/auth_entity.dart';
 import 'package:ecommerce_app/domain/use_case/signup_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -31,13 +31,13 @@ class SignUpViewModel extends Cubit<SignUpState> {
           rePasswordController.text,
           phoneController.text);
       switch (result) {
-        case Success<AuthResponseEntity>():
+        case Success<AuthEntity>():
           emit(SignUpSuccessState(signupResponse: result.data));
-        case ServerError<AuthResponseEntity>():
+        case ServerError<AuthEntity>():
           emit(SignUpErrorState(errorMessage: result.message));
-        case ConnectivityError<AuthResponseEntity>():
+        case ConnectivityError<AuthEntity>():
           emit(SignUpErrorState(errorMessage: result.message));
-        case GeneralException<AuthResponseEntity>():
+        case GeneralException<AuthEntity>():
           emit(SignUpErrorState(errorMessage: result.exception.toString()));
       }
     }

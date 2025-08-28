@@ -14,7 +14,7 @@ final class SignUpErrorState extends SignUpState {
 }
 
 final class SignUpSuccessState extends SignUpState {
-  final AuthResponseEntity signupResponse;
+  final AuthEntity signupResponse;
 
   SignUpSuccessState({required this.signupResponse});
 }

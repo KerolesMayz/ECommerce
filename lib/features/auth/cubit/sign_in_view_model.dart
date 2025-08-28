@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_app/core/widget/dialog_utils.dart';
-import 'package:ecommerce_app/domain/entity/auth_response.dart';
+import 'package:ecommerce_app/domain/entity/auth_entity.dart';
 import 'package:ecommerce_app/domain/entity/result_entity.dart';
 import 'package:ecommerce_app/domain/use_case/signin_use_case.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +21,13 @@ class SignInViewModel extends Cubit<SignInState> {
       emit(SignInLoadingState());
       var result = await signInUseCase.invoke(passwordController.text, emailController.text);
       switch(result){
-        case Success<AuthResponseEntity>():
+        case Success<AuthEntity>():
           emit(SignInSuccessState(signInResponse: result.data));
-        case ServerError<AuthResponseEntity>():
+        case ServerError<AuthEntity>():
           emit(SignInErrorState(errorMessage: result.message));
-        case ConnectivityError<AuthResponseEntity>():
+        case ConnectivityError<AuthEntity>():
           emit(SignInErrorState(errorMessage: result.message));
-        case GeneralException<AuthResponseEntity>():
+        case GeneralException<AuthEntity>():
           emit(SignInErrorState(errorMessage: result.exception.toString()));
       }
     }
